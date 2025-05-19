@@ -1,4 +1,3 @@
-
 import { connectDB } from "@/lib/mongodb";
 import User from "@/models/User";
 import bcrypt from "bcryptjs";
@@ -14,7 +13,9 @@ export async function GET(_, { params }) {
         JSON.stringify({ success: false, error: "User not found" }),
         { status: 404 }
       );
-    return new Response(JSON.stringify({ success: true, user }), {
+    const userObj = user.toObject();
+    delete userObj.password;
+    return new Response(JSON.stringify({ success: true, user: userObj }), {
       status: 200,
     });
   } catch (err) {
