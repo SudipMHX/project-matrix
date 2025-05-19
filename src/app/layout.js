@@ -1,5 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import MainMenu from "@/components/Shared/MainMenu";
+import DockMenu from "@/components/Shared/DockMenu";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,11 +20,20 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang='en' suppressHydrationWarning>
+      <head>
+        <meta
+          name='viewport'
+          content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
+        />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+        className={`${geistMono.variable}  ${geistSans.variable} antialiased overflow-x-hidden`}>
+        <header className='relative md:static'>
+          <MainMenu />
+          {/* <DockMenu /> */}
+        </header>
+        <main className='flex flex-col'>{children}</main>
       </body>
     </html>
   );
