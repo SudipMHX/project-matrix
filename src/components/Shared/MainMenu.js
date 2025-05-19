@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CircleUser } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 const MainMenu = () => {
   const pathname = usePathname();
+  const { user, setUser } = useAuth();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -41,6 +43,18 @@ const MainMenu = () => {
 
   if (!mounted) return null; // Prevents Tailwind mismatches
 
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/logout", {
+        method: "POST",
+      });
+
+      setUser(null); // clear user from context
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
+  };
+
   return (
     <nav
       className={`container mx-auto fixed top-2 left-1/2 -translate-x-1/2 flex items-center justify-between px-6 py-2 rounded-full z-50 backdrop-blur-3xl transition-all duration-300 ${
@@ -58,9 +72,7 @@ const MainMenu = () => {
             <Link
               key={item.href}
               href={item.href}
-              className={`group relative ${
-                isActive && "font-bold"
-              }`}>
+              className={`group relative ${isActive && "font-bold"}`}>
               <span className='relative inline-flex overflow-hidden'>
                 <div className='translate-y-0 skew-y-0 transform-gpu transition-transform duration-500 group-hover:-translate-y-[110%] group-hover:skew-y-12'>
                   {item.label}
@@ -75,11 +87,32 @@ const MainMenu = () => {
       </div>
 
       <div className='static md:relative flex items-center gap-2 font-semibold'>
-        <Link href='/profile'>
-          <CircleUser />
-        </Link>
-        <Link href='/login'>Login</Link>
-        <Link href='/register'>Register</Link>
+        {user && (
+          <>
+            <Link href='/profile' className=''>
+              <CircleUser />
+            </Link>
+            <button
+              onClick={handleLogout}
+              className='cursor-pointer bg-red-500 text-white px-3 py-1 rounded-2xl text-sm'>
+              Logout
+            </button>
+          </>
+        )}
+        {!user && (
+          <>
+            <Link
+              className='cursor-pointer bg-green-500 text-white px-3 py-1 rounded-2xl text-sm'
+              href='/login'>
+              Login
+            </Link>
+            <Link
+              className='cursor-pointer hover:bg-green-500/20 px-3 py-1 rounded-2xl text-sm'
+              href='/register'>
+              Register
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );

@@ -1,6 +1,10 @@
+"use client";
 import Card from "@/components/ui/Card";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Home() {
+  const { user } = useAuth();
+  console.log(user);
   return (
     <section>
       <div className='container mx-auto py-20 px-2'>
