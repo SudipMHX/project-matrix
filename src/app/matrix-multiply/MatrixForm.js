@@ -76,11 +76,11 @@ export default function MatrixForm() {
       <h1 className='text-2xl font-semibold text-blue-600 py-10'>
         Matrix Multiplication
       </h1>
-      <div className='flex justify-center gap-5' style={{ marginBottom: 10 }}>
-        <div className='space-y-2'>
+      <div className='grid grid-cols-2 gap-6' style={{ marginBottom: 10 }}>
+        <div className='flex flex-col gap-2'>
           <h4>Matrix A Dimensions</h4>
           <input
-            className='p-1 bg-white focus-within:bg-green-300 block px-4 rounded-lg outline-none'
+            className='p-1 bg-white focus-within:bg-green-300 w-full px-4 rounded-lg outline-none'
             name='r1'
             type='number'
             placeholder='Rows'
@@ -88,7 +88,7 @@ export default function MatrixForm() {
             onChange={handleDimsChange}
           />
           <input
-            className='p-1 bg-white focus-within:bg-green-300 block px-4 rounded-lg outline-none'
+            className='p-1 bg-white focus-within:bg-green-300 w-full px-4 rounded-lg outline-none'
             name='c1'
             placeholder='Columns'
             type='number'
@@ -96,10 +96,10 @@ export default function MatrixForm() {
             onChange={handleDimsChange}
           />
         </div>
-        <div className='space-y-2'>
+        <div className='flex flex-col gap-2'>
           <h4>Matrix B Dimensions</h4>
           <input
-            className='p-1 bg-white focus-within:bg-green-300 block px-4 rounded-lg outline-none'
+            className='p-1 bg-white focus-within:bg-green-300 w-full px-4 rounded-lg outline-none'
             name='r2'
             type='number'
             placeholder='Rows'
@@ -107,7 +107,7 @@ export default function MatrixForm() {
             onChange={handleDimsChange}
           />
           <input
-            className='p-1 bg-white focus-within:bg-green-300 block px-4 rounded-lg outline-none'
+            className='p-1 bg-white focus-within:bg-green-300 w-full px-4 rounded-lg outline-none'
             name='c2'
             type='number'
             placeholder='Columns'

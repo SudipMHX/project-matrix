@@ -52,7 +52,7 @@ const ClientProfile = () => {
           </div>
 
           {/* Profile Image */}
-          <div className='flex justify-center relative -top-12 z-50'>
+          <div className='flex justify-center relative -top-12'>
             <Image
               className='w-24 h-24 object-cover rounded-full shadow-md'
               src={ProfilePhoto}

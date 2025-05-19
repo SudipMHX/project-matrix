@@ -1,8 +1,8 @@
 export default function MatrixInput({ matrix, setMatrix }) {
   return (
-    <div className='space-y-2'>
+    <div className='flex flex-col items-center gap-2 overflow-x-auto'>
       {matrix.map((row, i) => (
-        <div className='space-x-2' key={i}>
+        <div className='flex gap-2 mb-1' key={i}>
           {row.map((val, j) => (
             <input
               className='bg-white outline-none focus-within:bg-green-300 p-1 px-4 rounded-lg w-20'

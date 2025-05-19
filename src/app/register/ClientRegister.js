@@ -4,6 +4,7 @@ import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const ClientRegister = () => {
   const { setUser } = useAuth();
@@ -66,10 +67,22 @@ const ClientRegister = () => {
       const data = await response.json();
 
       if (response.ok) {
+        Swal.fire({
+          icon: "success",
+          title: "Registration Successful",
+          text: "Welcome aboard! You can now log in.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         setUser(data.user); // 🔥 Immediate update to AuthContext
         router.push("/"); // Optional: Redirect to home
       } else {
-        // console.error(data.error);
+        Swal.fire({
+          icon: "error",
+          title: "Registration Failed",
+          text: data.message || "Please try again.",
+          showConfirmButton: true,
+        });
       }
     } catch (error) {
       console.error("Error:", error);

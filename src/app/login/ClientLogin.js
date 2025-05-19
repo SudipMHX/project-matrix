@@ -3,6 +3,7 @@
 import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 const ClientLogin = () => {
   const { setUser } = useAuth();
@@ -31,10 +32,22 @@ const ClientLogin = () => {
     const data = await res.json();
 
     if (res.ok) {
+      Swal.fire({
+        icon: "success",
+        title: "Login Successful",
+        text: "Welcome back!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       setUser(data.user); // 🔥 Immediate update to AuthContext
       router.push("/"); // Optional: Redirect to home
     } else {
-      // console.error(data.error);
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: "Please check your credentials.",
+        showConfirmButton: true,
+      });
     }
   };
 
