@@ -1,10 +1,15 @@
 "use client";
+
+import MatrixForm from "./MatrixForm";
+
 const ClientMatrixMultiply = () => {
-    return (
-      <div>
-        <h1>Matrix Multiply</h1>
+  return (
+    <section className='bg-fuchsia-100'>
+      <div className='container mx-auto py-20 px-5'>
+        <MatrixForm />
       </div>
-    );
+    </section>
+  );
 };
 
 export default ClientMatrixMultiply;

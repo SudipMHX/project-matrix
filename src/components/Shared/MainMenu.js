@@ -34,7 +34,7 @@ const MainMenu = () => {
     { label: "Home", href: "/" },
     { label: "Largest Number", href: "/largest-number" },
     { label: "Even Number", href: "/even-number" },
-    { label: "Matrix ultiply", href: "/matrix-multiply" },
+    { label: "Matrix Multiply", href: "/matrix-multiply" },
   ];
 
   useEffect(() => {
@@ -74,10 +74,10 @@ const MainMenu = () => {
               href={item.href}
               className={`group relative ${isActive && "font-bold"}`}>
               <span className='relative inline-flex overflow-hidden'>
-                <div className='translate-y-0 skew-y-0 transform-gpu transition-transform duration-500 group-hover:-translate-y-[110%] group-hover:skew-y-12'>
+                <div className='translate-y-0 skew-y-0 transform-gpu transition-transform duration-500 group-hover:-translate-y-[130%] group-hover:skew-y-12'>
                   {item.label}
                 </div>
-                <div className='absolute translate-y-[110%] skew-y-12 transform-gpu transition-transform duration-500 group-hover:translate-y-0 group-hover:skew-y-0'>
+                <div className='absolute translate-y-[130%] skew-y-12 transform-gpu transition-transform duration-500 group-hover:translate-y-0 group-hover:skew-y-0'>
                   {item.label}
                 </div>
               </span>
